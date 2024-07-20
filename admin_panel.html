@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Control Panel Login</title>
+    <link rel="stylesheet" href="index1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+        }
+
+        .login {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input_1, .input_2 {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            color: #fff;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted>
+        <source src="loginvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <a href="index.html" class="home-button"><i class="fas fa-home"></i></a>
+
+    <div class="content">
+        <header></header>
+        <div class="login medium-text">Control Panel Login</div>
+        <div class="input">
+            <input class="input_1" placeholder="Admin ID" id="adminId">
+            <input class="input_2" placeholder="Admin Password" type="password" id="adminPassword">
+            <button onclick="validateLogin()">Login</button>
+        </div>
+        <script>
+            function validateLogin() {
+                var adminId = document.getElementById('adminId').value;
+                var adminPassword = document.getElementById('adminPassword').value;
+
+                // Replace 'yourAdminId' and 'yourAdminPassword' with the actual credentials
+                if (adminId === 'yourAdminId' && adminPassword === 'yourAdminPassword') {
+                    window.location.href = 'control.html';
+                } else {
+                    alert('Invalid Admin ID or Password.');
+                }
+            }
+        </script>
+        <footer>
+            Created By Team Avinya
+        </footer>
+    </div>
+</body>
+</html>

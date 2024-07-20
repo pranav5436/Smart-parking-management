@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Vehicle Registration Data</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://www.mokosmart.com/wp-content/uploads/2022/03/Smart-parking-system-using-IoT.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .data-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            width: 80%;
+            max-width: 600px;
+        }
+        .data-container h2 {
+            text-align: center;
+        }
+        .data-container p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .data-container button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .data-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="data-container">
+        <h2>Vehicle Registration Data</h2>
+        <p id="ownerName">Owner Name: </p>
+        <p id="vehicleType">Vehicle Type: </p>
+        <p id="vehicleNumber">Vehicle Number: </p>
+        <p id="registrationDate">Registration Date: </p>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        // Function to display the saved data
+        function displayData() {
+            // Retrieve the data from local storage
+            const storedData = localStorage.getItem('vehicleRegistrationData');
+            
+            if (storedData) {
+                // Parse the JSON data
+                const formData = JSON.parse(storedData);
+                
+                // Display the data in the HTML elements
+                document.getElementById('ownerName').textContent = `Owner Name: ${formData.ownerName}`;
+                document.getElementById('vehicleType').textContent = `Vehicle Type: ${formData.vehicleType}`;
+                document.getElementById('vehicleNumber').textContent = `Vehicle Number: ${formData.vehicleNumber}`;
+                document.getElementById('registrationDate').textContent = `Registration Date: ${formData.registrationDate}`;
+            } else {
+                document.querySelector('.data-container').innerHTML = '<h2>No data found</h2>';
+            }
+        }
+
+        // Call the function to display the data
+        displayData();
+
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
+

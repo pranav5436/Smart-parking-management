@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+            position: relative;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://t4.ftcdn.net/jpg/03/11/52/45/360_F_311524531_vIWjyMlzSlsdH2TiSwPlOcbeaenSJbm5.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* Place the background behind other elements */
+        }
+
+        .content {
+            position: relative;
+            z-index: 1; /* Ensure content is above background */
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align content to the right */
+            margin-top: 50px;
+            padding-right: 20px; /* Add right padding for content */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding in width */
+            display: flex;
+            justify-content: space-between; /* Space items evenly */
+            align-items: center; /* Center align items vertically */
+            position: relative; /* Needed for absolute positioning of search tab */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .search-icon {
+            font-size: 1.5em;
+            color: #fff;
+            cursor: pointer;
+            position: relative; /* Needed for positioning the search tab */
+        }
+
+        .search-tab {
+            position: absolute;
+            top: 50%; /* Align vertically centered */
+            right: 0;
+            transform: translateY(-50%); /* Center vertically */
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            display: none; /* Initially hide search tab */
+        }
+
+        .search-tab.active {
+            display: block; /* Show search tab when active */
+        }
+
+        .camera-tab,
+        .specific-tab {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            padding: 20px;
+            width: 900px; /* Increased width */
+            height: 350px; /* Increased height */
+            display: none; /* Initially hide tabs */
+            z-index: 1; /* Ensure it's above other content */
+            overflow: auto; /* Enable scrolling if content overflows */
+        }
+
+        .camera-tab.active,
+        .specific-tab.active {
+            display: block; /* Show tabs when active */
+        }
+
+        .big-buttons {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align buttons to the right */
+            gap: 20px; /* Space between buttons */
+        }
+
+        .big-buttons .button,
+        .category-tab .button {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px; /* Max width for larger screens */
+            width: 100%; /* Full width of parent */
+        }
+
+        .big-buttons .button:hover,
+        .category-tab .button:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 10px 20px; /* Smaller padding */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em; /* Smaller font size */
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .home-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Space between buttons */
+            margin-top: 20px;
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure video covers the container */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="content">
+        <header>
+            <h1>Control Panel</h1>
+            <div class="search-icon" onclick="toggleSearchTab()">&#128269;</div>
+            <div class="search-tab" id="searchTab">
+                <input type="text" placeholder="Search..." style="padding: 8px; border-radius: 5px; border: none;">
+            </div>
+        </header>
+        <main>
+            <div class="big-buttons">
+                <a href="javascript:void(0);" class="button" onclick="toggleCameraTab()">Camera View</a>
+                
+                <a href="output.html" class="button">Register</a>
+                <a href="index.html" class="home-button">Home</a> <!-- Home button at the end -->
+            </div>
+        </main>
+    </div>
+    <div class="camera-tab" id="cameraTab">
+        <video controls>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="back-button" onclick="toggleCameraTab()">Back</div>
+    </div>
+    <div class="specific-tab" id="detectTab">
+        <p>Content for Detect Tab...</p>
+        <div class="back-button" onclick="toggleDetectTab()">Back</div>
+    </div>
+
+    <script>
+        function toggleSearchTab() {
+            var searchTab = document.getElementById('searchTab');
+            searchTab.classList.toggle('active');
+        }
+
+        function toggleCameraTab() {
+            var cameraTab = document.getElementById('cameraTab');
+            cameraTab.classList.toggle('active');
+        }
+
+        function toggleDetectTab() {
+            var detectTab = document.getElementById('detectTab');
+            detectTab.classList.toggle('active');
+            onclick="C:/Users/admin/Documents/final_project/run.vbs";
+            
+        }
+    </script>
+</body>
+</html>

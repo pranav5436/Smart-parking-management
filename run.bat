@@ -1,0 +1,2 @@
+python readvideo.py
+pause

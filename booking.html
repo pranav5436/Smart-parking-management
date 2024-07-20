@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Slot Web</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://en.pimg.jp/077/030/837/1/77030837.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .parking-grid {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .parking-slot {
+            border: 2px solid #ccc;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .parking-slot:hover {
+            background-color: #f0f0f0;
+        }
+
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .controls button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .parking-grid {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="parking-grid">
+        <h1>Parking Slot Reservation</h1>
+        <table>
+            <tr>
+                <td class="parking-slot" id="A1" onclick="confirmReservation('A1')">A1</td>
+                <td class="parking-slot" id="A2" onclick="confirmReservation('A2')">A2</td>
+                <td class="parking-slot" id="A3" onclick="confirmReservation('A3')">A3</td>
+            </tr>
+            <tr>
+                <td class="parking-slot" id="B1" onclick="confirmReservation('B1')">B1</td>
+                <td class="parking-slot" id="B2" onclick="confirmReservation('B2')">B2</td>
+                <td class="parking-slot" id="B3" onclick="confirmReservation('B3')">B3</td>
+            </tr>
+            <tr>
+                <td class="parking-slot" id="C1" onclick="confirmReservation('C1')">C1</td>
+                <td class="parking-slot" id="C2" onclick="confirmReservation('C2')">C2</td>
+                <td class="parking-slot" id="C3" onclick="confirmReservation('C3')">C3</td>
+            </tr>
+        </table>
+        <div class="controls">
+            <button onclick="submitReservations()">Submit</button>
+            <button onclick="cancelReservation()">Cancel</button>
+            <a href="index.html"><button>Home</button></a>
+        </div>
+    </div>
+
+    <script>
+        var selectedSlotId = null;
+
+        function confirmReservation(slotId) {
+            var confirmed = confirm('Do you want to reserve parking slot ' + slotId + '?');
+            if (confirmed) {
+                reserveSlot(slotId);
+            }
+        }
+
+        function reserveSlot(slotId) {
+            if (selectedSlotId !== null) {
+                alert('You have already reserved a slot. Please cancel your current reservation first.');
+                return;
+            }
+
+            var slot = document.getElementById(slotId);
+            slot.style.backgroundColor = '#28a745';
+            slot.style.color = '#fff';
+            slot.innerHTML = slotId + '<br>Reserved';
+            selectedSlotId = slotId;
+
+            // Store the reserved slot in local storage
+            localStorage.setItem('reservedSlot', slotId);
+        }
+
+        function cancelReservation() {
+            if (selectedSlotId !== null) {
+                var slot = document.getElementById(selectedSlotId);
+                slot.style.backgroundColor = '#fff';
+                slot.style.color = '#333';
+                slot.innerHTML = selectedSlotId;
+                selectedSlotId = null;
+                alert('Reservation cancelled successfully.');
+
+                // Remove the reserved slot from local storage
+                localStorage.removeItem('reservedSlot');
+            } else {
+                alert('No slot is currently reserved.');
+            }
+        }
+
+        function submitReservations() {
+            if (selectedSlotId === null) {
+                alert('No slot selected. Please select a slot to reserve.');
+                return;
+            }
+            alert('Slot registration successful');
+        }
+    </script>
+</body>
+</html>

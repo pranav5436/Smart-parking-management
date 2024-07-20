@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Registration Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://www.mokosmart.com/wp-content/uploads/2022/03/Smart-parking-system-using-IoT.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .data-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            text-align: center;
+        }
+        .data-container h2 {
+            margin-bottom: 20px;
+        }
+        .data-container p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="data-container">
+        <h2>Vehicle Registration Data</h2>
+        <p id="ownerName"></p>
+        <p id="vehicleType"></p>
+        <p id="vehicleNumber"></p>
+        <p id="registrationDate"></p>
+        <p id="reservedSlot"></p>
+    </div>
+
+    <script>
+        // Retrieve data from local storage
+        const formData = JSON.parse(localStorage.getItem('vehicleRegistrationData'));
+        const reservedSlot = localStorage.getItem('reservedSlot');
+
+        // Display data
+        document.getElementById('ownerName').textContent = 'Owner Name: ' + (formData?.ownerName || 'N/A');
+        document.getElementById('vehicleType').textContent = 'Vehicle Type: ' + (formData?.vehicleType || 'N/A');
+        document.getElementById('vehicleNumber').textContent = 'Vehicle Number: ' + (formData?.vehicleNumber || 'N/A');
+        document.getElementById('registrationDate').textContent = 'Registration Date: ' + (formData?.registrationDate || 'N/A');
+        document.getElementById('reservedSlot').textContent = 'Reserved Slot: ' + (reservedSlot || 'N/A');
+    </script>
+</body>
+</html>

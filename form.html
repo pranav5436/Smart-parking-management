@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Registration Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://www.mokosmart.com/wp-content/uploads/2022/03/Smart-parking-system-using-IoT.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Vehicle Registration Form</h2>
+        <form id="registrationForm">
+            <label for="ownerName">Owner Name:</label>
+            <input type="text" id="ownerName" name="ownerName" required>
+            
+            <label for="vehicleType">Vehicle Type:</label>
+            <select id="vehicleType" name="vehicleType" required>
+                <option value="bike">Bike</option>
+                <option value="truck">Truck</option>
+                <option value="car">Car</option>
+            </select>
+            
+            <label for="vehicleNumber">Vehicle Number:</label>
+            <input type="text" id="vehicleNumber" name="vehicleNumber" maxlength="10" required>
+            
+            <label for="registrationDate">Date:</label>
+            <select id="registrationDate" name="registrationDate" required>
+                <option value="2024-07-20">2024-07-20</option>
+                <option value="2024-07-21">2024-07-21</option>
+                <option value="2024-07-22">2024-07-22</option>
+                <option value="2024-07-23">2024-07-23</option>
+                <option value="2024-07-24">2024-07-24</option>
+                <!-- Add more dates as needed -->
+            </select>
+            
+            <input type="submit" value="Next">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form values
+            const ownerName = document.getElementById('ownerName').value;
+            const vehicleType = document.getElementById('vehicleType').value;
+            const vehicleNumber = document.getElementById('vehicleNumber').value;
+            const registrationDate = document.getElementById('registrationDate').value;
+
+            // Create an object to hold the form data
+            const formData = {
+                ownerName: ownerName,
+                vehicleType: vehicleType,
+                vehicleNumber: vehicleNumber,
+                registrationDate: registrationDate
+            };
+
+            // Store the form data in local storage
+            localStorage.setItem('vehicleRegistrationData', JSON.stringify(formData));
+
+            // Optionally, you can redirect to another page or display a success message
+            alert('Data has been saved successfully!');
+            window.location.href = 'booking.html'; // Redirect to the booking page
+        });
+    </script>
+</body>
+</html>
+

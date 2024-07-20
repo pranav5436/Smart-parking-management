@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.mokosmart.com/wp-content/uploads/2022/03/Smart-parking-system-using-IoT.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], select, input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+
+        input[type="checkbox"] {
+            margin-bottom: 15px;
+            border-radius: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="vehicleRegistrationForm" onsubmit="submitRegistration(event)">
+        
+        <label for="vehicleType">Vehicle Type:</label>
+        <select id="vehicleType" name="vehicleType" required>
+            <option value="">Select Vehicle Type</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+            <option value="bus">Bus</option>
+            <option value="scooter">Scooter</option>
+        </select>
+
+        <label for="numberOfVehicles">Number of Vehicles:</label>
+        <input type="number" id="numberOfVehicles" name="numberOfVehicles" min="1" required onchange="generateLicensePlateInputs()">
+
+        <div id="licensePlateInputs">
+            <!-- License plate inputs will be dynamically added here -->
+        </div>
+        
+        <label for="otpMethod">Send OTP Via:</label>
+        <select id="otpMethod" name="otpMethod" required>
+            <option value="">Select OTP Method</option>
+            <option value="mobile">Mobile Number</option>
+            <option value="email">Email</option>
+        </select>
+
+        <label><input type="checkbox" id="termsAgreement" name="termsAgreement"> I agree to the terms and conditions</label>
+
+        <input type="submit" value="Send OTP">
+    </form>
+</div>
+
+<script>
+    function generateLicensePlateInputs() {
+        let numberOfVehicles = document.getElementById('numberOfVehicles').value;
+        let licensePlateInputsContainer = document.getElementById('licensePlateInputs');
+        licensePlateInputsContainer.innerHTML = ''; // Clear previous inputs
+
+        for (let i = 1; i <= numberOfVehicles; i++) {
+            let label = document.createElement('label');
+            label.textContent = 'License Plate Number for Vehicle ' + i + ':';
+            
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'licensePlate' + i;
+            input.placeholder = 'Enter License Plate Number for Vehicle ' + i;
+            input.required = true;
+
+            let br = document.createElement('br');
+
+            licensePlateInputsContainer.appendChild(label);
+            licensePlateInputsContainer.appendChild(input);
+            licensePlateInputsContainer.appendChild(br);
+        }
+    }
+
+    function submitRegistration(event) {
+        event.preventDefault();
+
+        let vehicleType = document.getElementById('vehicleType').value;
+        let otpMethod = document.getElementById('otpMethod').value;
+        let termsAgreement = document.getElementById('termsAgreement').checked;
+
+        // Validate
+        if (!vehicleType || !otpMethod || !termsAgreement) {
+            alert('Please fill out all required fields.');
+            return;
+        }
+
+        // Proceed to OTP page or any other action
+        window.location.href = 'otp.html';
+    }
+</script>
+
+</body>
+</html>

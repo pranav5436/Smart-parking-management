@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Smart Parking Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* Allow scrolling */
+            height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+            border-radius: 10px;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .about-info, .team {
+            background: rgba(255, 255, 255, 0.8); /* Make background semi-transparent */
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .team p {
+            margin-bottom: 5px;
+        }
+
+        .team p strong {
+            font-weight: bold;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <video id="background-video" autoplay loop muted>
+        <source src="loginvideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <div class="button-container">
+            <a href="index.html" class="button"><i class="fas fa-home"></i> Home</a>
+            <div>
+                <a href="trial.html" class="button">Login</a>
+                <a href="form.html" class="button">Register</a>
+            </div>
+        </div>
+        
+        <h1>About Us - Smart Parking Management System</h1>
+
+        <div class="about-info">
+            <h2>Our Mission</h2>
+            <p>At Smart Parking Solutions, our mission is to revolutionize the way parking is managed by leveraging cutting-edge technology and innovative solutions. We aim to provide seamless, efficient, and user-friendly parking experiences for both users and operators.</p>
+            
+            <h2>What We Do</h2>
+            <p>We specialize in delivering state-of-the-art parking management systems designed to optimize parking space utilization, reduce congestion, and enhance the overall parking experience. Our comprehensive solutions include:</p>
+            <ul>
+                <li>Real-time parking space monitoring and availability updates.</li>
+                <li>Advanced reservation systems for hassle-free booking.</li>
+                <li>Automated payment processing for convenience and efficiency.</li>
+                <li>Detailed analytics and reporting for data-driven decision-making.</li>
+                <li>Easy integration with existing infrastructure and third-party services.</li>
+            </ul>
+            
+            <h2>Our Vision</h2>
+            <p>We envision a future where parking management is effortless and intuitive, contributing to smarter cities and more sustainable urban environments. Our goal is to be at the forefront of this transformation, continuously innovating and improving our solutions to meet the evolving needs of our clients.</p>
+        </div>
+
+        <div class="team">
+            <h2>Our Team</h2>
+            <p>Our team consists of experienced professionals from diverse backgrounds, including technology, engineering, and customer service. We are passionate about creating innovative solutions that make a real difference in the world of parking management.</p>
+            <p><strong>Yuvraj Rajure</strong></p>
+            <p><strong>Vaishnavi Borse</strong></p>
+            <p><strong>Pranjali Patil</strong></p>
+            <p><strong>Pratiksha Sonawane</strong></p>
+            <p><strong>Prasad Waghmode</strong></p>
+            <p><strong>Yash Dabhade</strong></p>
+            <p><strong>Sonawane Hardik</strong></p>
+        </div>
+    </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

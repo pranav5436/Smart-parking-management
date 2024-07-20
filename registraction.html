@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.mokosmart.com/wp-content/uploads/2022/03/Smart-parking-system-using-IoT.webp'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], select, input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vehicle Registration Form</h1>
+    <form id="vehicleRegistrationForm" onsubmit="submitRegistration(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" pattern="^[a-zA-Z0-9.]+$" title="Username can only contain letters, numbers, and the dot (.) symbol" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mobNo">Mob No:</label>
+        <input type="text" id="mobNo" name="mobNo" pattern="\d{10}" title="Please enter a 10-digit mobile number" required>
+
+        <label for="password">Create Password:</label>
+        <input type="password" id="password" name="password" pattern="^(?=.*\S).{6,16}$" title="Password must be between 6 to 16 characters and cannot contain spaces" required>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+        <input type="submit" value="Next">
+    </form>
+</div>
+
+<script>
+    function submitRegistration(event) {
+        event.preventDefault();
+
+        // Perform your form validation here
+        let username = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
+        let mobNo = document.getElementById('mobNo').value;
+        let password = document.getElementById('password').value;
+        let confirmPassword = document.getElementById('confirmPassword').value;
+    
+        // Example validation (you can add more conditions as needed)
+        if (!username || !email || !mobNo || !password || !confirmPassword) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            return;
+        }
+
+        // Example: Redirect to another page after successful registration
+        window.location.href = 'next.html';
+    }
+</script>
+
+</body>
+</html>
