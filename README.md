@@ -1,5 +1,4 @@
- CODE IS IN PROGRESS
-
+ STATUS :- IN PROGRESS 
 
 # Number Plate Recognition System Using OpenCV
 
